@@ -39,3 +39,5 @@ function pow(x, n) {
   } else {
     alert( pow(x, n) );
   }
+
+  console.log ('Hello world');
