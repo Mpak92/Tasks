@@ -1,18 +1,14 @@
-'use strict';
+function Accumulator(startingValue) {
+  this.value = startingValue;
 
-function Accumulator (startingValue) {
+  this.read = function (a) {
+    this.value += a;
+  };
+}
 
-    this.value = startingValue;
-
-    this.read = function (a) {
-        this.value += a; 
-    };
-};
-
-let accum = new Accumulator(50);
+const accum = new Accumulator(50);
 
 accum.read(5);
 accum.read(10);
 
-console.log ( (accum.value) );
-
+console.log((accum.value));
