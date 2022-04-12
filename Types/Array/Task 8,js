@@ -1,0 +1,44 @@
+function Calculator() {
+  this.methods = {
+    '-': (a, b) => a - b,
+    '+': (a, b) => a + b,
+  };
+
+  this.calculate = (str) => {
+    const arrTemp = str.split(' ');
+    arrTemp[0] = +arrTemp[0];
+    arrTemp[2] = +arrTemp[2];
+    const c = arrTemp[1];
+    if (!this.methods[c] || isNaN(arrTemp[0]) || isNaN(arrTemp[2])) {
+      return NaN;
+    }
+    for (const key in this.methods) {
+      if (c === key) {
+        arrTemp.splice(1, 1);
+        return arrTemp.reduce(this.methods[key]);
+      }
+    }
+  };
+
+  this.addMethod = (name, func) => {
+    this.methods[name] = func;
+  };
+}
+
+const calc = new Calculator();
+
+console.log(calc.calculate('15 + 11')); // 26
+
+const powerCalc = new Calculator();
+powerCalc.addMethod('*', (a, b) => a * b);
+powerCalc.addMethod('/', (a, b) => a / b);
+powerCalc.addMethod('**', (a, b) => a ** b);
+
+let result = powerCalc.calculate('3 ** 3');
+console.log(result); // 27
+result = powerCalc.calculate('5 * 7');
+console.log(result); // 35
+result = powerCalc.calculate('63 / 9');
+console.log(result); // 7
+result = powerCalc.calculate('121 - 11');
+console.log(result); // 110
