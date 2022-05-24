@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница</title>
+</head>
+<body>
+    <h1>JavaScript</h1>
+    <p>
+        <b>JavaScript®</b> (<mark>часто просто JS</mark>) — это легковесный, интерпретируемый или JIT-компилируемый, объектно-ориентированный язык с функциями первого класса. Наиболее широкое применение находит как язык сценариев веб-страниц, но также используется и в других программных продуктах, например, node.js или Apache CouchDB. JavaScript это прототипно-ориентированный, мультипарадигменный язык с динамической типизацией, который поддерживает объектно-ориентированный, императивный и декларативный (например, функциональное программирование) стили программирования.
+    </p>
+    <p>
+        Эта часть сайта посвящена самому языку <i>JavaScript</i>, и она не затрагивает тонкостей, связанных с веб-страницами или окружением, в котором исполняется JavaScript. Информация об API, относящихся к веб-страницам, находится в разделах, посвящённых Веб-API и DOM (en-US).
+    </p>
+    <h2>Типы данных:</h2>
+    <ul>
+        <li>Строки</li>
+        <li>Числа</li>
+        <li>Лигический</li>
+        <li>BigInt</li>
+        <li>Null</li>
+        <li>Undefined</li>
+        <li>Символ</li>
+        <li>Объект</li>
+    </ul>
+    <a href="https://developer.mozilla.org/ru/docs/Web/JavaScript" target="_blank">Ссылка на источник</a>
+    <p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/800px-Unofficial_JavaScript_logo_2.svg.png" alt="picture" width="10%">
+    </p>
+    <div>
+        <table border="1" width="300">
+            <thead>
+                <tr>
+                    <th>Число</th>
+                    <th>Буква</th>
+                    <th>Комбинация</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>4</td>
+                    <td>Ц</td>
+                    <td>4Ц</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Н</td>
+                    <td>5Н</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>К</td>
+                    <td>7К</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <br>
+        <form action="" method="post">
+            <label for="login">Логин</label>
+            <input type="text" name="login" id="login">
+
+            <br>
+            <br>
+
+            <label for="pass">Пароль</label>
+            <input type="password" name="pass" id="pass">
+
+            <br>
+            <br>
+
+            <input type="submit" value="Отправить">
+        </form>
+    </div>
+    <br>
+    <div>
+        <form action="" method="post">
+            <label>
+                ФИО
+                <input type="text" name="fio" placeholder="Иванов Иван Иванович">
+            </label>
+
+            <br>
+            <br>
+
+            <label>
+                Возраст
+                <input type="number" name="age">
+            </label>
+            
+            <br>
+            <br>
+
+            <label>
+                Email
+                <input type="email" name="email">
+            </label>
+
+            <br>
+            <br>
+
+            <fieldset>
+                <legend>Пол</legend>
+            <label>
+                М
+                <input type="radio" name="sex" value="man" checked>
+            </label>
+            <label>
+                Ж
+                <input type="radio" name="sex" value="woman">
+            </label>
+            </fieldset>
+
+            <br>
+            <br>
+
+            <select name="place">
+                <option value="1">Первый</option>
+                <option value="2">Второй</option>
+                <option value="3">Третий</option>
+            </select>
+
+            <br>
+            <br>
+            
+            <fieldset>
+                <legend>Выбор</legend>
+                <label>
+                    <input type="checkbox" name="fav" value="1"> 1
+                </label>
+                <label>
+                    <input type="checkbox" name="fav" value="2"> 2
+                </label>
+                <label>
+                    <input type="checkbox" name="fav" value="3"> 3
+                </label>
+            </fieldset>
+
+            <br>
+            <br>
+
+                <textarea name="comment" id="" cols="30" rows="10" placeholder="Комментарий"></textarea>
+            
+            <br>
+            <br>
+            
+            <input type="file" name="file">
+
+            <br>
+            <br>
+            
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+</body>
+</html>
