@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .block {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: auto;
+            margin-top: 100px;
+            border: 1px solid black;
+            width: 500px;
+            height: 300px;
+        }
+        .block p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    
+    <script>
+        const div = document.createElement('div');
+        div.className = 'block';
+        document.body.append(div);
+
+        function runOnKeys(func, ...keyN) {
+            const set = new Set();
+
+            function down(e) {
+                set.add(e.code);
+
+                for (const key of keyN) {
+                    if (!set.has(key)) return;
+                }
+
+                func();
+
+                set.clear();
+            }
+
+            function up(e) {
+                set.delete(e.code);
+                div.style.backgroundColor = '';
+            }
+
+            document.addEventListener('keydown', down);
+            document.addEventListener('keyup', up);
+
+            const text = () => {
+                let word = '';
+
+                for (let i = 0; i < keyN.length; i++) {
+                    if (i !== keyN.length - 1) {
+                        word += keyN[i].slice(3) + ', ';
+                    } else {
+                        word += keyN[i].slice(3);
+                    }
+                }
+
+                return word;
+            }
+
+            div.innerHTML = `<p>Нажми вместе ${text()}</p><p>Прямоугольник станет красным</p>`;
+
+        }
+
+        runOnKeys(
+        () => div.style.backgroundColor = 'red',
+        "KeyQ",
+        "KeyW"
+        );
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+p {
+    display: flex;
+    justify-content: center;
+}
+
+#largeImg {
+    margin-top: 100px;
+}
+
+#thumbs {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    margin-top: 150px;
+}
+
+#thumbs a {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+a :hover {
+    border: 2px solid chocolate;
+}

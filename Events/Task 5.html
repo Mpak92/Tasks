@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    table {
+       border-collapse: collapse;
+     }
+     th, td {
+       border: 1px solid black;
+       padding: 4px;
+     }
+     th {
+       cursor: pointer;
+     }
+     th:hover {
+       background: yellow;
+     }
+  </style>
+</head>
+
+<body>
+
+  <table id="grid">
+    <thead>
+      <tr>
+        <th data-type="number">Возраст</th>
+        <th data-type="string">Имя</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>5</td>
+        <td>Вася</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Петя</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>Женя</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>Маша</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Илья</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    function sort(event) {
+        if (event.target.tagName !== 'TH') return;
+        if (event.target.dataset.type === 'number') {
+            let arr = Array.from(grid.rows).slice(1).sort((a, b) => a.cells[0].innerHTML - b.cells[0].innerHTML);
+            grid.tBodies[0].append(...arr);
+        };
+        if (event.target.dataset.type === 'string') {
+            let arr = Array.from(grid.rows).slice(1).sort((a, b) => a.cells[1].innerHTML > b.cells[1].innerHTML ? 1 : -1);
+            grid.tBodies[0].append(...arr);
+        };
+
+    };
+
+    grid.addEventListener('click', sort);
+
+  </script>
+
+</body>
+</html>
