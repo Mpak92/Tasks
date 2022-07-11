@@ -1,0 +1,50 @@
+.createNewPost {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.createNewPost p {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin-left: 20px;
+    font-size: 42px;
+    font-weight: bold;
+    color: darkgray;
+}
+
+.createNewPost textarea {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin-left: 20px;
+    margin-right: 150px;
+    border-radius: 8px;
+    font-size: 24px;
+    height: 200px;
+    resize: none;
+}
+
+.createNewPost input {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    align-self: center;
+    justify-self: center;
+    border: 0;
+    border-radius: 8px;
+    margin-left: 140px;
+    margin-bottom: 60px;
+    width: 120px;
+    height: 50px;
+
+}
+
+.posts {
+    margin-left: 20px;
+    margin-right: 150px;
+}

@@ -1,0 +1,35 @@
+.content {
+    grid-area: content;
+    background-color: dodgerblue;
+}
+
+.hat img {
+    width: 2000px;
+}
+
+.ava {
+    display: grid;
+    grid-template-columns: 1fr 9fr;
+    margin-top: 20px;
+}
+
+.ava img {
+    margin-left: 20px;
+    width: 150px;
+    height: 150px;
+}
+
+.userInformation {
+    margin-left: 50px;
+    margin-bottom: 100px;
+}
+
+.name {
+    font-size: 48px;
+    font-weight: bold;
+    margin: 0 0 50px 0;
+}
+
+.data {
+    font-size: 24px;
+}
