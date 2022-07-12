@@ -5,11 +5,16 @@
     margin-right: 20px;
 }
 
-.item {
+.item a {
     color: white;
     font-size: 32px;
+    text-decoration: none;
 }
 
-.item.set {
+.item a.active {
+    color: black;
+}
+
+.set {
     margin-top: 50px;
 }

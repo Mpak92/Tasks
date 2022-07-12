@@ -10,9 +10,8 @@ const MyPosts = () => {
                 <input type={'submit'} value='SEND'></input>
             </div>
             <div className={posts.posts}>
-                <Post />
-                <Post />
-                <Post />
+                <Post message='Hi!'/>
+                <Post message="It's my first post"/>
             </div>
         </div>
     );

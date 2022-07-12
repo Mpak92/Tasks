@@ -3,7 +3,7 @@ import prof from './Profile.module.css';
 
 const Profile = () => {
     return (
-        <div className={prof.content}>
+        <div>
             <div className={prof.hat}>
                 <img src='https://cs13.pikabu.ru/post_img/big/2019/09/12/8/1568292408143083988.jpg'></img>
             </div>
