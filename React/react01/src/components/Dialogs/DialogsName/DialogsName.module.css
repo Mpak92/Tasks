@@ -1,0 +1,18 @@
+.dialogsItems {
+    margin-top: 30px;
+    margin-left: 50px;
+}
+
+.item a.active {
+    color: black;
+}
+
+.item {
+    margin-top: 10px;
+}
+
+.item a {
+    color: white;
+    text-decoration: none;
+    font-size: 32px;
+}

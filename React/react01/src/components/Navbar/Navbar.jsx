@@ -8,7 +8,7 @@ const Navbar = () => {
         <NavLink to='/profile' className={navData => navData.isActive ? nav.active : nav.item}>Profile</NavLink>
       </div>
       <div className={nav.item}>
-        <NavLink to='/dialogs' className={navData => navData.isActive ? nav.active : nav.item}>Messagies</NavLink>
+        <NavLink to='/dialogs' className={navData => navData.isActive ? nav.active : nav.item}>Messages</NavLink>
       </div>
       <div className={nav.item}>
         <NavLink to='/news' className={navData => navData.isActive ? nav.active : nav.item}>News</NavLink>
@@ -16,7 +16,7 @@ const Navbar = () => {
       <div className={nav.item}>
         <NavLink to='/music' className={navData => navData.isActive ? nav.active : nav.item}>Music</NavLink>
       </div>
-      <div className={`${nav.item} ${nav.set}`}>
+      <div className={nav.item + ' ' + nav.set}>
         <NavLink to='/settings' className={navData => navData.isActive ? nav.active : nav.item}>Settings</NavLink>
       </div>
     </nav >
