@@ -2,3 +2,14 @@
     display: grid;
     grid-template-columns: 1fr 4fr;
 }
+
+.dialogsItems {
+    margin-top: 30px;
+    margin-left: 50px;
+}
+
+.messages {
+    margin: 20px 20px 20px 0;
+    padding-left: 20px;
+    border-left: 2px solid;
+}

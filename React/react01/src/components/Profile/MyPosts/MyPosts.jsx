@@ -1,7 +1,9 @@
 import posts from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = () => {
+const MyPosts = (props) => {
+    let postsElems = props.posts.map(pos => <Post message={pos.message} likesCount={pos.likesCount} />);
+
     return (
         <div>
             <div className={posts.createNewPost}>
@@ -10,8 +12,7 @@ const MyPosts = () => {
                 <input type={'submit'} value='SEND'></input>
             </div>
             <div className={posts.posts}>
-                <Post message='Hi!'/>
-                <Post message="It's my first post"/>
+                {postsElems}
             </div>
         </div>
     );
