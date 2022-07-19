@@ -1,0 +1,12 @@
+.online {
+    display: grid;
+    justify-self: center;
+    justify-items: center;
+    font-size: 24px;
+}
+
+.online img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}

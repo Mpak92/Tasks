@@ -3,7 +3,16 @@
 }
 
 .item {
+    display: grid;
+    grid-template-columns: 60px 1fr;
     margin-top: 10px;
+    margin-left: 5px;
+}
+
+.item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
 }
 
 .item a {
