@@ -1,6 +1,7 @@
 import DiaCont from './DialogsContent/DiaCont';
 import DialogsName from './DialogsName/DialogsName';
 import dialog from './Dialogs.module.css';
+import NewMessage from './NewMessage/NewMessage';
 
 const Dialogs = (props) => {
     let dialogsElems = props.dialogs.dialogs.map(dia => <DialogsName name={dia.name} id={dia.id} ava={dia.ava} />);
@@ -14,6 +15,9 @@ const Dialogs = (props) => {
             <div className={dialog.messages}>
                 {messagesElems}
             </div>
+            <NewMessage addMessage={props.addMessage}
+                updateNewMessageText={props.updateNewMessageText} 
+                newMessageText={props.dialogs.newMessageText} />
         </div>
     );
 }

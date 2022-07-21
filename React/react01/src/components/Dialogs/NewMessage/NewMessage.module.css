@@ -1,0 +1,25 @@
+.newMessage {
+    display: grid;
+    grid-template-columns: 1fr 250px;
+    grid-column-start: 2;
+    justify-items: end;
+    gap: 10px;
+}
+
+.newMessage textarea {
+    border-radius: 8px;
+    font-size: 24px;
+    width: 1000px;
+    height: 150px;
+    resize: none;
+}
+
+.newMessage button {
+    background-color: aliceblue;
+    font-size: 26px;
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+    border: 0px;
+    justify-self: left;
+}
