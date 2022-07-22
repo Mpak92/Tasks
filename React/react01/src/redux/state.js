@@ -1,73 +1,81 @@
-import { rerenderEntireTree } from "../render";
+const store = {
+    _state: {
+        profile: {
+            posts: [
+                { id: 1, message: 'Hi!', likesCount: 3 },
+                { id: 2, message: "It's my first post", likesCount: 25 }
+            ],
 
-const state = {
-    profile: {
-        posts: [
-        { id: 1, message: 'Hi!', likesCount: 3 },
-        { id: 2, message: "It's my first post", likesCount: 25 }
-        ],
+            newPostText: ''
+        },
 
-        newPostText: ''
+        dialogs: {
+            dialogs: [
+                { id: 1, name: 'Andrew', ava: 'https://klike.net/uploads/posts/2019-03/1551511801_1.jpg' },
+                { id: 2, name: 'Nick', ava: 'https://vraki.net/sites/default/files/inline/images/2_3.png' },
+                { id: 3, name: 'Sasha', ava: 'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg' },
+                { id: 4, name: 'Viktor', ava: 'https://www.meme-arsenal.com/memes/b877babd9c07f94b952c7f152c4e264e.jpg' }
+            ],
+
+            messages: [
+                { id: 1, message: 'Hi!' },
+                { id: 2, message: 'How are you?' },
+                { id: 3, message: 'Goodbye!' },
+            ],
+
+            newMessageText: ''
+        },
+
+        navbar: {
+            friends: [
+                { id: 1, name: 'Andrew', ava: 'https://klike.net/uploads/posts/2019-03/1551511801_1.jpg' },
+                { id: 2, name: 'Nick', ava: 'https://vraki.net/sites/default/files/inline/images/2_3.png' },
+                { id: 3, name: 'Sasha', ava: 'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg' },
+                { id: 4, name: 'Viktor', ava: 'https://www.meme-arsenal.com/memes/b877babd9c07f94b952c7f152c4e264e.jpg' }
+            ]
+        }
     },
 
-    dialogs: {
-        dialogs: [
-        { id: 1, name: 'Andrew', ava: 'https://klike.net/uploads/posts/2019-03/1551511801_1.jpg' },
-        { id: 2, name: 'Nick', ava: 'https://vraki.net/sites/default/files/inline/images/2_3.png' },
-        { id: 3, name: 'Sasha', ava: 'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg' },
-        { id: 4, name: 'Viktor', ava: 'https://www.meme-arsenal.com/memes/b877babd9c07f94b952c7f152c4e264e.jpg' }
-        ],
-
-        messages: [
-        { id: 1, message: 'Hi!' },
-        { id: 2, message: 'How are you?' },
-        { id: 3, message: 'Goodbye!' },
-        ],
-
-        newMessageText: ''
+    _callSubscriber() {
+        console.log('state changed');
     },
 
-    navbar: {
-        friends: [
-        { id: 1, name: 'Andrew', ava: 'https://klike.net/uploads/posts/2019-03/1551511801_1.jpg' },
-        { id: 2, name: 'Nick', ava: 'https://vraki.net/sites/default/files/inline/images/2_3.png' },
-        { id: 3, name: 'Sasha', ava: 'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg' },
-        { id: 4, name: 'Viktor', ava: 'https://www.meme-arsenal.com/memes/b877babd9c07f94b952c7f152c4e264e.jpg' }
-        ]
+    getState() {
+        return this._state;
+    },
+
+    subscribe(observer) {
+        this._callSubscriber = observer;
+    },
+
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            const newPost = {
+                id: 3,
+                message: this._state.profile.newPostText,
+                likesCount: 0
+            };
+        
+            this._state.profile.posts.push(newPost);
+            this._state.profile.newPostText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'ADD-MESSAGE') {
+            const newMess = {
+                id: 4,
+                message: this._state.dialogs.newMessageText
+            };
+        
+            this._state.dialogs.messages.push(newMess);
+            this._state.dialogs.newMessageText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profile.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+            this._state.dialogs.newMessageText = action.newText;
+            this._callSubscriber(this._state);
+        }
     }
-}
-
-export const addPost = () => {
-    const newPost = {
-        id: 3,
-        message: state.profile.newPostText,
-        likesCount: 0
-    };
-
-    state.profile.posts.push(newPost);
-    state.profile.newPostText = '';
-    rerenderEntireTree(state);
 };
 
-export const addMessage = () => {
-    const newMess = {
-        id: 4,
-        message: state.dialogs.newMessageText
-    };
-
-    state.dialogs.messages.push(newMess);
-    state.dialogs.newMessageText = '';
-    rerenderEntireTree(state);
-};
-
-export const updateNewPostText = (newText) => {
-    state.profile.newPostText = newText;
-    rerenderEntireTree(state);
-};
-
-export const updateNewMessageText = (newText) => {
-    state.dialogs.newMessageText = newText;
-    rerenderEntireTree(state);
-}
-
-export default state;
+export default store;
