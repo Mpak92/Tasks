@@ -1,19 +1,18 @@
-import React from 'react';
+import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../redux/state';
 import posts from './MyPosts.module.css';
 import Post from './Post/Post';
+
 
 const MyPosts = (props) => {
     let postsElems = props.posts.map(pos => <Post message={pos.message} likesCount={pos.likesCount} />);
 
-    const newPostElement = React.createRef();
-
     const addPost = () => {
-        props.dispatch({ type: 'ADD-POST' });
+        props.dispatch(addPostActionCreator());
     };
 
-    const onPostChange = () => {
-        const text = newPostElement.current.value;
-        props.dispatch({ type: 'UPDATE-NEW-POST-TEXT', newText: text });
+    const onPostChange = (e) => {
+        const text = e.target.value;
+        props.dispatch(updateNewPostTextActionCreator(text));
     };
 
     return (
@@ -21,7 +20,6 @@ const MyPosts = (props) => {
             <div className={posts.createNewPost}>
                 <p>My posts</p>
                 <textarea name='New post' placeholder='your news...'
-                    ref={newPostElement}
                     value={props.newPostText}
                     onChange={onPostChange} />
                 <input type={'submit'}
