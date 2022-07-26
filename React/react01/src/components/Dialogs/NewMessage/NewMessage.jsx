@@ -1,5 +1,6 @@
-import { addMessageActionCreator, updateNewMessageTextActionCreator } from '../../../redux/state';
+import { addMessageActionCreator, updateNewMessageTextActionCreator } from '../../../redux/dialogs-reducer';
 import newmess from './NewMessage.module.css';
+
 
 const NewMessage = (props) => {
     const addNewMessage = () => {
