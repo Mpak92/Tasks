@@ -1,15 +1,13 @@
-import { addMessageActionCreator, updateNewMessageTextActionCreator } from '../../../redux/dialogs-reducer';
 import newmess from './NewMessage.module.css';
-
 
 const NewMessage = (props) => {
     const addNewMessage = () => {
-        props.dispatch(addMessageActionCreator());
+        props.addNewMessage();
     };
 
     const onMessageChange = (e) => {
         const text = e.target.value;
-        props.dispatch(updateNewMessageTextActionCreator(text));
+        props.onMessageChange(text);
     };
 
     return (

@@ -1,11 +1,13 @@
 import DiaCont from './DialogsContent/DiaCont';
 import DialogsName from './DialogsName/DialogsName';
 import dialog from './Dialogs.module.css';
-import NewMessage from './NewMessage/NewMessage';
+import NewMessageContainer from './NewMessage/NewMessageContainer';
 
 const Dialogs = (props) => {
-    let dialogsElems = props.dialogs.dialogs.map(dia => <DialogsName name={dia.name} id={dia.id} ava={dia.ava} />);
-    let messagesElems = props.dialogs.messages.map(mess => <DiaCont message={mess.message} />);
+    const state = props.store.getState().dialogs;
+
+    let dialogsElems = state.dialogs.map(dia => <DialogsName name={dia.name} id={dia.id} ava={dia.ava} />);
+    let messagesElems = state.messages.map(mess => <DiaCont message={mess.message} />);
 
     return (
         <div className={dialog.dialogs}>
@@ -15,8 +17,7 @@ const Dialogs = (props) => {
             <div className={dialog.messages}>
                 {messagesElems}
             </div>
-            <NewMessage newMessageText={props.dialogs.newMessageText}
-                dispatch={props.dispatch} />
+            <NewMessageContainer store={props.store} />
         </div>
     );
 }
