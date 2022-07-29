@@ -3,7 +3,7 @@ import nav from'./Navbar.module.css';
 import Friends from './Friends/Friends';
 
 const Navbar = (props) => {
-  let friendsOnline = props.navbar.friends.map( fr => <Friends name={fr.name} id={fr.id} ava={fr.ava} />);
+  let friendsOnline = props.navbar.friends.map( fr => <Friends name={fr.name} id={fr.id} ava={fr.ava} key={fr.id} />);
 
   return (
     <nav className={nav.nav}>

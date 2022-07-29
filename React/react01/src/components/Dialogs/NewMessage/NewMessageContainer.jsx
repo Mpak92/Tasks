@@ -4,6 +4,7 @@ import NewMessage from './NewMessage';
 
 const mapStateToProps = (state) => {
     return {
+        messages: state.dialogs.messages,
         newMessageText: state.dialogs.newMessageText
     }
 };
