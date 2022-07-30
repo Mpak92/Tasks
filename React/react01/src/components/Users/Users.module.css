@@ -1,0 +1,63 @@
+.container {
+    margin-top: 100px;
+    margin-left: 100px;
+}
+
+.itemContainer {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    margin-top: 50px;
+}
+
+.ava {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+.followButton {
+    margin-top: 10px;
+    height: 50px;
+    width: 100px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.info {
+    display: grid;
+    grid-template-areas: 
+    "name location"
+    "status location";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    margin-left: 50px;
+    background-color: antiquewhite;
+    width: 800px;
+    border-radius: 10px;
+}
+
+.name {
+    grid-area: name;
+    font-size: 32px;
+    font-weight: bold;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.status {
+    grid-area: status;
+    font-size: 20px;
+    margin-left: 20px;
+    margin-bottom: 15px;
+    align-self: end;
+}
+
+.location {
+    align-self: center;
+    justify-self: end;
+    grid-area: location;
+    font-size: 32px;
+    font-weight: bold;
+    margin-right: 40px;
+}
