@@ -1,93 +1,46 @@
 import user from './Users.module.css';
+import * as axios from 'axios';
+import userPhoto from '../../assets/images/user.png'
+import React from 'react';
 
-const Users = (props) => {
+class Users extends React.Component {
 
-    if (props.users.length === 0) {
-        props.setUsers([{
-            id: 1,
-            photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp4FqfSaO96eCocMum8PnH33KAoISdNpFtpg&usqp=CAU',
-            followed: true,
-            fullName: 'Nikolai',
-            status: 'Hi, im newby',
-            location: { city: 'Minsk', country: 'Belarus' }
-        },
-        {
-            id: 2,
-            photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp4FqfSaO96eCocMum8PnH33KAoISdNpFtpg&usqp=CAU',
-            followed: false,
-            fullName: 'Sasha',
-            status: 'Hi, im newby',
-            location: { city: 'Moscow', country: 'Russia' }
-        },
-        {
-            id: 3,
-            photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp4FqfSaO96eCocMum8PnH33KAoISdNpFtpg&usqp=CAU',
-            followed: false,
-            fullName: 'Viktor',
-            status: 'Hi, im newby',
-            location: { city: 'Borisov', country: 'Belarus' }
-        },
-        {
-            id: 4,
-            photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp4FqfSaO96eCocMum8PnH33KAoISdNpFtpg&usqp=CAU',
-            followed: false,
-            fullName: 'Anya',
-            status: 'Hi, im newby',
-            location: { city: 'Rostov', country: 'Russia' }
-        },
-        {
-            id: 5,
-            photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp4FqfSaO96eCocMum8PnH33KAoISdNpFtpg&usqp=CAU',
-            followed: false,
-            fullName: 'Lena',
-            status: 'Hi, im newby',
-            location: { city: 'Rostov', country: 'Russia' }
-        },
-        {
-            id: 6,
-            photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp4FqfSaO96eCocMum8PnH33KAoISdNpFtpg&usqp=CAU',
-            followed: false,
-            fullName: 'Boris',
-            status: 'Hi, im newby',
-            location: { city: 'Borisov', country: 'Belarus' }
-        },
-        {
-            id: 7,
-            photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp4FqfSaO96eCocMum8PnH33KAoISdNpFtpg&usqp=CAU',
-            followed: false,
-            fullName: 'Vika',
-            status: 'Hi, im newby',
-            location: { city: 'Novocherkassk', country: 'Russia' }
-        }]);
-    };
+    constructor(props) {
+        super(props);
 
-    return (
-        <div className={user.container}>
-            {
-                props.users.map(u => <div key={u.id} className={user.itemContainer}>
-                    <div>
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response => { this.props.setUsers(response.data.items) });
+    }
+
+    render() {
+        return (
+            <div className={user.container}>
+                {
+                    this.props.users.map(u => <div key={u.id} className={user.itemContainer}>
                         <div>
-                            <img src={u.photoUrl}
-                                alt="ava"
-                                className={user.ava} />
+                            <div>
+                                <img src={u.photos.small ? u.photos.small : userPhoto}
+                                    alt="ava"
+                                    className={user.ava} />
+                            </div>
+                            <div>
+                                {u.followed
+                                    ? <button className={user.followButton}
+                                        onClick={() => { this.props.unfollow(u.id) }} >Unfollow</button>
+                                    : <button className={user.followButton}
+                                        onClick={() => { this.props.follow(u.id) }} >Follow</button>}
+                            </div>
                         </div>
-                        <div>
-                            {u.followed
-                                ? <button className={user.followButton}
-                                    onClick={() => { props.unfollow(u.id) }} >Unfollow</button>
-                                : <button className={user.followButton}
-                                    onClick={() => { props.follow(u.id) }} >Follow</button>}
+                        <div className={user.info}>
+                            <div className={user.name}>{u.name}</div>
+                            <div className={user.status}>{u.status}</div>
+                            <div className={user.location}>{'u.location.country'}, <br /> {'u.location.city'}</div>
                         </div>
-                    </div>
-                    <div className={user.info}>
-                        <div className={user.name}>{u.fullName}</div>
-                        <div className={user.status}>{u.status}</div>
-                        <div className={user.location}>{u.location.country}, <br /> {u.location.city}</div>
-                    </div>
-                </div>)
-            }
-        </div>
-    )
-};
+                    </div>)
+                }
+            </div>
+        )
+    }
+}
 
 export default Users;
