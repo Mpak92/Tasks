@@ -1,46 +1,52 @@
 import user from './Users.module.css';
-import * as axios from 'axios';
 import userPhoto from '../../assets/images/user.png'
-import React from 'react';
 
-class Users extends React.Component {
+const Users = (props) => {
+    const pagesCount = Math.ceil(props.totalCount / props.pageSize);
 
-    constructor(props) {
-        super(props);
-
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then(response => { this.props.setUsers(response.data.items) });
+    const pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i)
     }
 
-    render() {
-        return (
-            <div className={user.container}>
-                {
-                    this.props.users.map(u => <div key={u.id} className={user.itemContainer}>
+    const curP = props.currentPage;
+    const curPF = ((curP - 5) < 0) ? 0 : curP - 5;
+    const curPL = curP + 5;
+    const slicedPages = pages.slice(curPF, curPL);
+
+    return (<div>
+        <div className={user.page}>
+            {slicedPages.map(p => <div key={p}
+                className={props.currentPage === p ? user.activePage : user.notActive}
+                onClick={() => { props.onPageChanged(p) }}>{p}</div>)}
+        </div>
+        <div className={user.container}>
+            {
+                props.users.map(u => <div key={u.id} className={user.itemContainer}>
+                    <div>
                         <div>
-                            <div>
-                                <img src={u.photos.small ? u.photos.small : userPhoto}
-                                    alt="ava"
-                                    className={user.ava} />
-                            </div>
-                            <div>
-                                {u.followed
-                                    ? <button className={user.followButton}
-                                        onClick={() => { this.props.unfollow(u.id) }} >Unfollow</button>
-                                    : <button className={user.followButton}
-                                        onClick={() => { this.props.follow(u.id) }} >Follow</button>}
-                            </div>
+                            <img src={u.photos.small ? u.photos.small : userPhoto}
+                                alt="ava"
+                                className={user.ava} />
                         </div>
-                        <div className={user.info}>
-                            <div className={user.name}>{u.name}</div>
-                            <div className={user.status}>{u.status}</div>
-                            <div className={user.location}>{'u.location.country'}, <br /> {'u.location.city'}</div>
+                        <div>
+                            {u.followed
+                                ? <button className={user.followButton}
+                                    onClick={() => { props.unfollow(u.id) }} >Unfollow</button>
+                                : <button className={user.followButton}
+                                    onClick={() => { props.follow(u.id) }} >Follow</button>}
                         </div>
-                    </div>)
-                }
-            </div>
-        )
-    }
+                    </div>
+                    <div className={user.info}>
+                        <div className={user.name}>{u.name}</div>
+                        <div className={user.status}>{u.status}</div>
+                        <div className={user.location}>{'u.location.country'}, <br /> {'u.location.city'}</div>
+                    </div>
+                </div>)
+            }
+        </div>
+    </div>
+    )
 }
 
 export default Users;
