@@ -1,6 +1,4 @@
-import mus from './Music.module.css';
-
-const Music = (props) => {
+const Music = () => {
     return (
         <div>
             Music

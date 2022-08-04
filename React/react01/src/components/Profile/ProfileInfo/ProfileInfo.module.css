@@ -8,10 +8,11 @@
     margin-top: 20px;
 }
 
-.ava img {
+.avatar {
     margin-left: 20px;
     width: 150px;
     height: 150px;
+    border-radius: 50%;
 }
 
 .userInformation {
@@ -27,4 +28,9 @@
 
 .data {
     font-size: 24px;
+}
+
+.finger {
+    width: 40px;
+    height: 40px;
 }
