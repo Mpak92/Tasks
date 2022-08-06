@@ -9,7 +9,9 @@ class ProfileContainer extends React.Component {
 
     componentDidMount() {
         let userId = this.props.router.params.userId;
-        if (!userId) userId = 2;
+        if (!userId) {
+            this.props.authorizedId ? userId = this.props.authorizedId : userId = 2
+        }
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
             .then(response => {
                 this.props.setUserProfile(response.data);
@@ -27,7 +29,8 @@ class ProfileContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        profile: state.profile.profile
+        profile: state.profile.profile,
+        authorizedId: state.auth.userId
     }
 };
 

@@ -1,6 +1,7 @@
 import user from './Users.module.css';
 import userPhoto from '../../assets/images/user.png'
 import { NavLink } from 'react-router-dom';
+import * as axios from 'axios';
 
 const Users = (props) => {
     const pagesCount = Math.ceil(props.totalCount / props.pageSize);
@@ -14,6 +15,34 @@ const Users = (props) => {
     const curPF = ((curP - 5) < 0) ? 0 : curP - 5;
     const curPL = curP + 5;
     const slicedPages = pages.slice(curPF, curPL);
+
+    const getFollow = (id) => {
+        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {},{
+            withCredentials: true,
+            headers: {
+                'API-KEY': 'f2c3c2f6-8493-49b7-b550-83cfb33ac815'
+            }
+        })
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                props.follow(id);
+            }
+        });
+    };
+
+    const getUnfollow = (id) => {
+        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {
+            withCredentials: true,
+            headers: {
+                'API-KEY': 'f2c3c2f6-8493-49b7-b550-83cfb33ac815'
+            }
+        })
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                props.unfollow(id);
+            }
+        });
+    };
 
     return (<div>
         <div className={user.page}>
@@ -35,9 +64,9 @@ const Users = (props) => {
                         <div>
                             {u.followed
                                 ? <button className={user.followButton}
-                                    onClick={() => { props.unfollow(u.id) }} >Unfollow</button>
+                                    onClick={() => { getUnfollow(u.id) }} >Unfollow</button>
                                 : <button className={user.followButton}
-                                    onClick={() => { props.follow(u.id) }} >Follow</button>}
+                                    onClick={() => { getFollow(u.id) }} >Follow</button>}
                         </div>
                     </div>
                     <div className={user.info}>
