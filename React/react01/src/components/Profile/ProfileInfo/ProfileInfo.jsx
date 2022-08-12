@@ -2,6 +2,7 @@ import Preloader from '../../common/preloader/Preloader';
 import info from './ProfileInfo.module.css';
 import yes from '../../../assets/images/true.png';
 import no from '../../../assets/images/false.png';
+import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -17,6 +18,9 @@ const ProfileInfo = (props) => {
                 <img className={info.avatar} src={props.profile.photos.large} alt='avatar'></img>
                 <div className={info.userInformation}>
                     <div className={info.name}>{props.profile.fullName}</div>
+                    <div className={info.status}>
+                        <ProfileStatus status={'Hello'} />
+                    </div>
                     <div className={info.data}>Date of Birth:</div>
                     <div className={info.data}>City:</div>
                     <div className={info.data}>About me: {props.profile.aboutMe}</div>
