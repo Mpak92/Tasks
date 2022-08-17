@@ -28,7 +28,7 @@
     resize: none;
 }
 
-.createNewPost input {
+.createNewPost button {
     grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 3;
