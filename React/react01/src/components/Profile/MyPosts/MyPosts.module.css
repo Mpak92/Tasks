@@ -48,3 +48,12 @@
     margin-left: 20px;
     margin-right: 150px;
 }
+
+.createError {
+    font-size: 20px;
+    font-weight: bold;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    align-self: flex-end;
+    padding-bottom: 5px;
+}

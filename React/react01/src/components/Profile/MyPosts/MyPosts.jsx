@@ -16,7 +16,7 @@ const MyPosts = (props) => {
 }
 
 const MyPostsForm = (props) => {
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm({mode: 'onSubmit'});
     const onSubmit = data => {
         props.addPost(data.newPost);
         reset()
@@ -26,7 +26,12 @@ const MyPostsForm = (props) => {
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className={posts.createNewPost}>
                 <p>My posts</p>
-                <textarea {...register('newPost')} placeholder='your news...' />
+                <textarea {...register('newPost',
+                    {
+                        required: 'This field cannot be empty'
+                    })}
+                    placeholder='your news...' />
+                <div className={posts.createError}>{errors.newPost?.message}</div>
                 <button>SEND</button>
             </div>
         </form>

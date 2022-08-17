@@ -1,0 +1,56 @@
+.container {
+    display: grid;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.container h1 {
+    justify-self: center;
+}
+
+.login {
+    font-size: 22px;
+}
+
+.pass {
+    font-size: 22px;
+    margin-top: 5px;
+}
+
+.error {
+    border: 2px solid red;
+}
+
+.error:focus {
+    outline: none;
+}
+
+.remember {
+    margin-top: 5px;
+}
+
+.remember span {
+    font-size: 22px;
+}
+
+.submit {
+    display: grid;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.submit button {
+    background-color: aliceblue;
+    font-size: 26px;
+    width: 80px;
+    height: auto;
+    border-radius: 8px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.erMes {
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+}
