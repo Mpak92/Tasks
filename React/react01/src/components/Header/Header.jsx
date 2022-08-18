@@ -11,7 +11,9 @@ const Header = (props) => {
             <div className={head.loginBlock}>
                 {props.auth.isFetching ? <Preloader /> :
                     <div>
-                        {props.auth.isAuth ? props.auth.login : <NavLink to='/login'>Login</NavLink>}
+                        {props.auth.isAuth
+                            ? <div>{props.auth.login} - <button onClick={props.logout}>Logout</button></div>
+                            : <NavLink to='/login'>Login</NavLink>}
                     </div>}
             </div>
         </header>

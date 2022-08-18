@@ -1,19 +1,26 @@
 import { useForm } from "react-hook-form";
 import log from './Login.module.css';
+import { connect } from 'react-redux';
+import { login } from './../../redux/auth-reducer';
+import { Navigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = (props) => {
+    if (props.isAuth) {
+        return <Navigate to="/profile" />
+    }
+
     return (
         <div className={log.container}>
             <h1>login</h1>
-            <LoginForm />
+            <LoginForm login={props.login} logout={props.logout} />
         </div>
     )
 }
 
-const LoginForm = () => {
+const LoginForm = (props) => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log(data);
+        props.login(data.login, data.password, data.rememberMe);
         reset()
     }
 
@@ -40,7 +47,7 @@ const LoginForm = () => {
                 {errors.password && <div className={log.erMes}>This field is required</div>}
             </div>
             <div className={log.remember}>
-                <input {...register('remember me')}
+                <input {...register('rememberMe')}
                     type="checkbox"
                      /> <span>Remember me</span>
             </div>
@@ -51,4 +58,10 @@ const LoginForm = () => {
     )
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+    return {
+        isAuth: state.auth.isAuth
+    }
+};
+
+export default connect(mapStateToProps, { login })(Login);
