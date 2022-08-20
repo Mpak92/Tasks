@@ -18,10 +18,9 @@ const Login = (props) => {
 }
 
 const LoginForm = (props) => {
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         props.login(data.login, data.password, data.rememberMe);
-        reset()
     }
 
     return (
