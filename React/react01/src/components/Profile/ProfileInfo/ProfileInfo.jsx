@@ -2,7 +2,8 @@ import Preloader from '../../common/preloader/Preloader';
 import info from './ProfileInfo.module.css';
 import yes from '../../../assets/images/true.png';
 import no from '../../../assets/images/false.png';
-import ProfileStatus from './ProfileStatus';
+// import ProfileStatus from './ProfileStatus';
+import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -19,7 +20,7 @@ const ProfileInfo = (props) => {
                 <div className={info.userInformation}>
                     <div className={info.name}>{props.profile.fullName}</div>
                     <div className={info.status}>
-                        <ProfileStatus userStatus={props.userStatus} updateUserStatus={props.updateUserStatus} />
+                        <ProfileStatusWithHooks userStatus={props.userStatus} updateUserStatus={props.updateUserStatus} />
                     </div>
                     <div className={info.data}>Date of Birth:</div>
                     <div className={info.data}>City:</div>
