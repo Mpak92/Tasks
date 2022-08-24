@@ -1,9 +1,12 @@
 import posts from './MyPosts.module.css';
 import Post from './Post/Post';
 import { useForm } from "react-hook-form";
+import React from 'react';
 
-const MyPosts = (props) => {
+const MyPosts = React.memo((props) => {
     let postsElems = props.posts.map(pos => <Post message={pos.message} likesCount={pos.likesCount} key={pos.id} />);
+
+    console.log('render');
 
     return (
         <div>
@@ -13,7 +16,7 @@ const MyPosts = (props) => {
             </div>
         </div>
     );
-}
+})
 
 const MyPostsForm = (props) => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm({mode: 'onSubmit'});
