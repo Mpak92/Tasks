@@ -6,8 +6,6 @@ import React from 'react';
 const MyPosts = React.memo((props) => {
     let postsElems = props.posts.map(pos => <Post message={pos.message} likesCount={pos.likesCount} key={pos.id} />);
 
-    console.log('render');
-
     return (
         <div>
             <MyPostsForm addPost={props.addPost} />

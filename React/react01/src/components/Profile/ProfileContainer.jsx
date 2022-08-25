@@ -14,7 +14,7 @@ class ProfileContainer extends React.Component {
             id = this.props.authorizedId;
         }
 
-        this.props.getUserProfile(this.props.router.params.userId, this.props.authorizedId);
+        this.props.getUserProfile(id);
         this.props.getUserStatus(id);
     }
 

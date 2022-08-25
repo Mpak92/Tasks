@@ -16,26 +16,56 @@ function baz(callback) {
   }, Math.random() * 100);
 }
 
+// const callback = (str) => {
+//   const a = new Promise ((resolve) => {
+//     console.log(str);
+//     resolve('Done');
+//   });
+//   return a;
+// };
+
+// const next = new Promise(() => {});
+
+// const callback2 = async (str) => {
+//   let promise = await new Promise((resolve) => {
+//     callback2(str); resolve();
+//   });
+//   return promise;
+// };
 const callback = (str) => {
   console.log(str);
 };
 
-const promise1 = new Promise((resolve) => {
-  foo(callback);
-});
+const func = () => {
+  return new Promise((resolve) => {
+    foo(resolve);
+  });
+};
+const func1 = () => {
+  return new Promise((resolve) => {
+    resolve(bar);
+  });
+};
+const func2 = () => {
+  return new Promise((resolve) => {
+    resolve(baz);
+  });
+};
 
-const promise2 = new Promise((resolve) => {
-  bar(callback);
-});
+const prom = new Promise((resolve) => {
+  resolve(foo(resolve));
+})
 
-const promise3 = new Promise((resolve) => {
-  baz(callback);
-});
+// async function func1(func, cb) {
+//   func(cb);
+//   console.log(cb);
+// }
 
 async function asyncFoo() {
-  await promise1;
-  await promise2;
-  await promise3;
+  await func();
+  await func1();
+  await func2();
 }
 
-asyncFoo();
+// asyncFoo();
+console.log(prom);
