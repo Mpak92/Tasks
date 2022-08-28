@@ -2,21 +2,28 @@ import Preloader from '../../common/preloader/Preloader';
 import info from './ProfileInfo.module.css';
 import yes from '../../../assets/images/true.png';
 import no from '../../../assets/images/false.png';
-// import ProfileStatus from './ProfileStatus';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
+import userPhoto from '../../../assets/images/user.png'
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
         return <Preloader />
     }
 
+    const onMainPhotoSelected = (e) => {
+        if (e.target.files.length) {
+            props.savePhoto(e.target.files[0])
+        }
+    };
+
     return (
         <div>
             <div className={info.hat}>
                 <img src='https://cs13.pikabu.ru/post_img/big/2019/09/12/8/1568292408143083988.jpg' alt='hat'></img>
+                { props.isOwner && <input type={'file'} onChange={onMainPhotoSelected} />}
             </div>
             <div className={info.ava}>
-                <img className={info.avatar} src={props.profile.photos.large} alt='avatar'></img>
+                <img className={info.avatar} src={props.profile.photos.large || userPhoto} alt='avatar'></img>
                 <div className={info.userInformation}>
                     <div className={info.name}>{props.profile.fullName}</div>
                     <div className={info.status}>
