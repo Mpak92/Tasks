@@ -12,7 +12,7 @@ const Login = (props) => {
     return (
         <div className={log.container}>
             <h1>login</h1>
-            <LoginForm login={props.login} logout={props.logout} />
+            <LoginForm login={props.login} captchaUrl={props.captchaUrl} />
         </div>
     )
 }
@@ -20,7 +20,7 @@ const Login = (props) => {
 const LoginForm = (props) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
-        props.login(data.login, data.password, data.rememberMe);
+        props.login(data.login, data.password, data.rememberMe, data.captcha);
     }
 
     return (
@@ -45,10 +45,22 @@ const LoginForm = (props) => {
                     className={log.pass + ' ' + (errors.password ? log.error : '')} />
                 {errors.password && <div className={log.erMes}>This field is required</div>}
             </div>
+            <div className={log.captchaImg}>
+                {props.captchaUrl && <img src={props.captchaUrl} alt={'captcha'} />}
+            </div>
+            <div>
+                {props.captchaUrl && <input {...register('captcha',
+                    {
+                        required: true
+                    })}
+                    type="text"
+                    placeholder="captcha"
+                    className={log.captcha} />}
+            </div>
             <div className={log.remember}>
                 <input {...register('rememberMe')}
                     type="checkbox"
-                     /> <span>Remember me</span>
+                /> <span>Remember me</span>
             </div>
             <div className={log.submit}>
                 <button>Login</button>
@@ -59,7 +71,8 @@ const LoginForm = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        captchaUrl: state.auth.captchaUrl
     }
 };
 

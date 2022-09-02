@@ -1,12 +1,14 @@
-import { authAPI } from "../API/api";
+import { authAPI, securityAPI } from "../API/api";
 
 const SET_USER_DATA = 'auth/SET_USER_DATA';
+const SET_CAPTCHA_URL = 'auth/SET_CAPTCHA_URL';
 
 const initialState = {
     userId: null,
     email: null,
     login: null,
-    isAuth: false
+    isAuth: false,
+    captchaUrl: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -17,6 +19,12 @@ const authReducer = (state = initialState, action) => {
                 ...action.data,
             };
 
+        case SET_CAPTCHA_URL:
+            return {
+                ...state,
+                captchaUrl: action.url,
+            };
+
         default:
             return state;
     }
@@ -24,6 +32,9 @@ const authReducer = (state = initialState, action) => {
 
 export const setUserData = (userId, email, login, isAuth) => {
     return { type: SET_USER_DATA, data: { userId, email, login, isAuth} };
+};
+export const setCaptchaUrl = (url) => {
+    return { type: SET_CAPTCHA_URL, url};
 };
 
 export const authMe = () => async (dispatch) => {
@@ -33,19 +44,23 @@ export const authMe = () => async (dispatch) => {
         dispatch(setUserData(id, email, login, true));
     }
 };
-
-export const login = (email, password, rememberMe) => async (dispatch) => {
-    const data = await authAPI.login(email, password, rememberMe);
+export const login = (email, password, rememberMe, captcha) => async (dispatch) => {
+    const data = await authAPI.login(email, password, rememberMe, captcha);
     if (data.resultCode === 0) {
         dispatch(authMe());
+    } else if (data.resultCode === 10) {
+        dispatch(getCaptcha());
     }
 };
-
 export const logout = () => async (dispatch) => {
     const data = await authAPI.logout();
     if (data.resultCode === 0) {
         dispatch(setUserData(null, null, null, false));
     }
+};
+export const getCaptcha = () => async (dispatch) => {
+    const data = await securityAPI.getCaptchaUrl();
+    dispatch(setCaptchaUrl(data.url));
 };
 
 export default authReducer;
